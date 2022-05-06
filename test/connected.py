@@ -1,0 +1,37 @@
+# %%
+import pandas as pd
+import numpy as np
+import networkx as nx
+import networkx.drawing.nx_pydot as pyd
+G = nx.DiGraph()
+G.add_node(1, sex=2)
+G.add_node(2, sex=1)
+G.add_node(3, sex=1)
+G.add_node(4, sex=2)
+G.add_node(5, sex=2)
+G.add_node(6, sex=1)
+G.add_node(7, sex=2)
+G.add_node(8, sex=2)
+G.add_node(9, sex=2)
+G.add_node(10, sex=1)
+G.add_node(11, sex=1)
+G.add_node(12, sex=2)
+G.add_node(13, sex=2)
+G.add_node(14, sex=1)
+G.add_edge(1, 3, type=2)
+G.add_edge(1, 4, type=2)
+G.add_edge(2, 3, type=1)
+G.add_edge(2, 4, type=1)
+G.add_edge(3, 5, type=1)
+G.add_edge(3, 6, type=1)
+G.add_edge(7, 5, type=2)
+G.add_edge(7, 6, type=2)
+G.add_edge(8, 7, type=2)
+G.add_edge(8, 9, type=2)
+G.add_edge(8, 10, type=2)
+G.add_edge(12, 13, type=2)
+G.add_edge(12, 14, type=2)
+for w in nx.weakly_connected_component_subgraphs(G):
+    print(w.order())
+    l=nx.topological_sort(w)
+    print(next(l))
